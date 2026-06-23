@@ -28,20 +28,3 @@ A responsive frontend web application that recreates the core user interface of 
 ---
  
 
-
-## 🧩 Architectural Highlight: Cross-Page Error Prevention
-
-When scaling this music player from a single-page layout to a multi-page site, loading the main audio control script (`script.js`) on the profile page (`About.html`) initially caused a critical execution freeze. The browser would fail to locate DOM elements like `masterPlay` (which only exists on the homepage player dashboard) and throw a fatal `TypeError`.
-
-To resolve this and keep the frontend decoupled and error-free, a conditional execution safety wrapper was implemented:
-```javascript
-// Safe execution block preventing script crashes on non-player views
-if (masterPlay) {
-    songItems.forEach((element, i) => {
-        element.getElementsByTagName("img")[0].src = songs[i].coverPath;
-        element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
-    });
-    
-    // All player-dependent event listeners (play, pause, next) are isolated here
-
-}
