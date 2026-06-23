@@ -1,0 +1,203 @@
+﻿:root {
+    font-size: 16px;
+    font-family: 'Century Gothic', 'URW Gothic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --transition-speed: 600ms;
+}
+
+body {
+    background: url("./Resources/Spotify green background.png");
+    background-size: cover;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-left: 5rem;
+    padding: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body::-webkit-scrollbar {
+    width: 0.75rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #6649b8;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+}
+
+.songitem {
+    display: flex;
+    flex-direction: column;
+    height: 6.25rem;
+    width: 10rem;
+    padding-bottom: 8.35rem;
+    padding-right: 2.5rem;
+}
+
+.songlist {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.songitem img {
+    width: 150px;
+}
+
+.songlistplay i img {
+    width: 1rem;
+}
+
+/* --- Modern Fixed-Height Player Bar --- */
+.bottom {
+    height: 90px;
+    width: 85%;
+    position: fixed;
+    bottom: 24px;
+    left: 50%; /* Tightly centers the bar on screen */
+    transform: translateX(-50%);
+    
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 0 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    
+    /* Forces exactly 3 equal, un-clonable rows side-by-side */
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 1.2fr;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+/* Left Section: Song Details & Tiny Fixed GIF */
+.songinfo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0; /* Prevents long titles from blowing out the row */
+}
+
+/* CRITICAL FIX: Forces the equalizer animation to stay small */
+#gif {
+    width: 40px !important;
+    height: 30px !important;
+    object-fit: contain;
+    flex-shrink: 0; /* Stops the grid from stretching it */
+    opacity: 0; /* Your JS changes this to 1 when playing */
+    transition: opacity 0.3s ease;
+}
+
+#masterSongName {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Puts a clean '...' if the song title is super long */
+}
+
+/* Center Section: Controls & Slider Stacked Neatly */
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.bottom .icon {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.bottom .icon i {
+    color: #b3b3b3;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.1s;
+}
+
+.bottom .icon i:hover {
+    color: #1db954; /* Premium Spotify Green hover effect */
+    transform: scale(1.1);
+}
+
+#masterPlay {
+    font-size: 2.4rem !important; /* Bold, clear master action circle */
+    color: #ffffff;
+}
+
+/* Custom Minimal Timeline Progress Bar */
+.slider-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#ProgressBar {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px; /* Clean, ultra-thin tracking bar line */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* The circular tracking knob */
+#ProgressBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+#ProgressBar::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Right Section Balance Spacer */
+.right-spacer {
+    display: flex;
+}
+.container {
+    margin-left: 110px !important;
+}
